@@ -1,7 +1,7 @@
 import { Box, Button, Input } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { useEffect, useState } from "react";
-const InputButton = ({ handleSubmit, placeholder = "", defaultValue }) => {
+import { useState } from "react";
+const InputButton = ({ handleSubmit, placeholder = "", defaultValue = "" }) => {
   const [newText, setNewText] = useState(defaultValue);
   const onSubmit = () => {
     handleSubmit(newText);

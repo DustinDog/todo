@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 import InputButton from "./InputButton";
 export const List = () => {
   const [todo, setTodo] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState({});
   const handleAddTodo = (newText) => {
     if (newText) {
@@ -26,7 +26,7 @@ export const List = () => {
       ...todo.slice(idx + 1),
     ]);
   };
-  console.log(selectedTodo);
+
   return (
     <Box
       sx={{
