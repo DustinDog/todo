@@ -9,7 +9,7 @@ const ModalPopUp = ({
   setOpen,
   defaultValue,
   addSubTask,
-  subtasks = [],
+  subTasks = [],
 }) => {
   return (
     <Box>
@@ -28,7 +28,7 @@ const ModalPopUp = ({
             <Typography sx={{ color: "grey", fontSize: "20px" }}>
               Add sub-task
             </Typography>
-            {subtasks.map((item) => (
+            {subTasks.map((item) => (
               <Typography key={item.id}>{item.title}</Typography>
             ))}
           </Box>

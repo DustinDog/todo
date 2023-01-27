@@ -4,9 +4,9 @@ import produce from "immer";
 
 const useTodo = () => {
   const [todo, setTodo] = useState([]);
-  const [selectedTodo, setSelectedTodo] = useState({});
+  const [selectedTodoId, setSelectedTodoId] = useState("");
 
-  const idx = todo.findIndex(({ id }) => selectedTodo.id === id);
+  const idx = todo.findIndex(({ id }) => selectedTodoId === id);
   const addSubTask = (value) => {
     setTodo(
       produce((draft) => {
@@ -14,7 +14,11 @@ const useTodo = () => {
       })
     );
   };
-
+  const deleteTodo = (id) => {
+    let newTodo = [...todo].filter((item) => item.id !== id);
+    setTodo(newTodo);
+    setSelectedTodoId("");
+  };
   const addTodo = (value) => {
     setTodo(
       produce((draft) => {
@@ -33,9 +37,10 @@ const useTodo = () => {
     todo,
     setTodo,
     addTodo,
+    deleteTodo,
     edit,
-    selectedTodo,
-    setSelectedTodo,
+    selectedTodoId,
+    setSelectedTodoId,
     addSubTask,
   };
 };

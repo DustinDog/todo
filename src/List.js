@@ -15,8 +15,9 @@ export const List = () => {
     setTodo,
     addTodo,
     edit,
-    selectedTodo,
-    setSelectedTodo,
+    deleteTodo,
+    selectedTodoId,
+    setSelectedTodoId,
     addSubTask,
   } = useTodo();
   const handleAddTodo = (newText) => {
@@ -38,6 +39,7 @@ export const List = () => {
         <Button
           onClick={() => {
             setTodo([]);
+            setSelectedTodoId("");
           }}
         >
           clear all
@@ -47,20 +49,28 @@ export const List = () => {
         edit={edit}
         setOpen={setOpen}
         open={open}
-        defaultValue={selectedTodo.title}
+        defaultValue={
+          selectedTodoId
+            ? todo.find((element) => element.id === selectedTodoId).title
+            : undefined
+        }
         addSubTask={addSubTask}
-        subtasks={selectedTodo.subTasks}
+        subTasks={
+          selectedTodoId
+            ? todo.find((element) => element.id === selectedTodoId).subTasks
+            : undefined
+        }
         ///problem
       />
       <Box>
         {todo.map((item) => (
           <Box key={item.id} sx={{ display: "flex" }}>
-            <CircleCheckbox todo={todo} setTodo={setTodo} item={item} />
+            <CircleCheckbox deleteTodo={deleteTodo} id={item.id} />
 
             <Typography
               sx={{ cursor: "pointer" }}
               onClick={() => {
-                setSelectedTodo(item);
+                setSelectedTodoId(item.id);
                 setOpen(true);
               }}
             >

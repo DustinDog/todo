@@ -2,17 +2,13 @@ import { Checkbox } from "@mui/material";
 import React from "react";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
-const CircleCheckbox = ({ todo, setTodo, item }) => {
-  const deleteTodo = (id) => {
-    setTimeout(() => {
-      let newTodo = [...todo].filter((item) => item.id !== id);
-      setTodo(newTodo);
-    }, 500);
-  };
+const CircleCheckbox = ({ deleteTodo, id }) => {
   return (
     <Checkbox
       onClick={() => {
-        deleteTodo(item.id);
+        setTimeout(() => {
+          deleteTodo(id);
+        }, 500);
       }}
       size="small"
       icon={<CircleOutlinedIcon />}
