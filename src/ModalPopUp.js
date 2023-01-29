@@ -1,5 +1,4 @@
-import { Box, Button, Input, Modal, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Modal } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import InputButton from "./InputButton";
 
@@ -13,24 +12,39 @@ const ModalPopUp = ({
 }) => {
   return (
     <Box>
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal sx={{ left: "400px" }} open={open} onClose={() => setOpen(false)}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <InputButton handleSubmit={edit} defaultValue={defaultValue} />
-          <Box
-            sx={{ display: "flex " }}
-            onClick={() => {
-              addSubTask(45);
-            }}
-          >
+          <InputButton
+            handleSubmit={edit}
+            defaultValue={defaultValue}
+            setOpen={setOpen}
+          />
+          <Box sx={{ display: "flex " }}>
             <Box>
-              <AddIcon fontSize="small" color="warning" />
+              <Box display="flex">
+                <AddIcon
+                  onClick={() => {
+                    addSubTask(45);
+                  }}
+                  fontSize="small"
+                  color="warning"
+                />
+                <Box
+                  onClick={() => {
+                    addSubTask(45);
+                  }}
+                  sx={{ color: "grey", fontSize: "20px" }}
+                >
+                  Add sub-task
+                </Box>
+              </Box>
+
+              {subTasks.map((item) => (
+                <Box key={item.id}>
+                  <Box>{item.title}</Box>
+                </Box>
+              ))}
             </Box>
-            <Typography sx={{ color: "grey", fontSize: "20px" }}>
-              Add sub-task
-            </Typography>
-            {subTasks.map((item) => (
-              <Typography key={item.id}>{item.title}</Typography>
-            ))}
           </Box>
         </Box>
       </Modal>
