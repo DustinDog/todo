@@ -6,7 +6,7 @@ const useTodo = () => {
   const [todo, setTodo] = useState([]);
   const [selectedTodoId, setSelectedTodoId] = useState("");
 
-  const idx = todo.findIndex(({ id }) => selectedTodoId === id);
+  const idx = todo.findIndex((item) => selectedTodoId === item.id);
   const addSubTask = (value) => {
     setTodo(
       produce((draft) => {
@@ -14,8 +14,21 @@ const useTodo = () => {
       })
     );
   };
+
+  const deleteSubTask = (subTaskId) => {
+    const remainedSubtasks = todo[idx].subTasks.filter(
+      (item) => item.id !== subTaskId
+    );
+
+    setTodo(
+      produce((draft) => {
+        draft[idx].subTasks = remainedSubtasks;
+      })
+    );
+  };
+
   const deleteTodo = (id) => {
-    let newTodo = [...todo].filter((item) => item.id !== id);
+    let newTodo = todo.filter((item) => item.id !== id);
     setTodo(newTodo);
     setSelectedTodoId("");
   };
@@ -42,6 +55,7 @@ const useTodo = () => {
     selectedTodoId,
     setSelectedTodoId,
     addSubTask,
+    deleteSubTask,
   };
 };
 

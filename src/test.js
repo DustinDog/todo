@@ -1,14 +1,17 @@
 const { uuid } = require("uuidv4");
-
-const arr = [
-  { title: "1", id: uuid() },
-  { title: "2", id: uuid() },
-  { title: "3", id: uuid() },
-  { title: "4", id: uuid() },
+const { produce } = require("immer");
+let arr = [
+  { title: "1", id: uuid(), subTasks: [{ id: "1" }] },
+  { title: "2", id: uuid(), subTasks: [{ id: "2" }] },
+  { title: "3", id: uuid(), subTasks: [{ id: "3" }] },
+  { title: "4", id: uuid(), subTasks: [{ id: "4" }] },
 ];
-
-const selectedId = arr[2].id;
-
-const foundItem = arr.some((item) => item.id === "gg");
-
-console.log(foundItem);
+const res = produce(arr, (draft) => {
+  draft[0].subTasks = draft[0].subTasks.filter((item) => item.id != "1");
+});
+arr = res;
+console.log(res);
+console.log(arr);
+// for (const obj in arr) {
+//   console.log(obj);
+// }

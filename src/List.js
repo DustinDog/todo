@@ -19,6 +19,7 @@ export const List = () => {
     selectedTodoId,
     setSelectedTodoId,
     addSubTask,
+    deleteSubTask,
   } = useTodo();
   const handleAddTodo = (newText) => {
     if (newText) {
@@ -46,6 +47,7 @@ export const List = () => {
         </Button>
       </Box>
       <ModalPopUp
+        deleteSubTask={deleteSubTask}
         edit={edit}
         setOpen={setOpen}
         open={open}

@@ -1,4 +1,4 @@
-import { Box, Modal } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import InputButton from "./InputButton";
 
@@ -9,13 +9,18 @@ const ModalPopUp = ({
   defaultValue,
   addSubTask,
   subTasks = [],
+  deleteSubTask,
 }) => {
+  const handleSubmit = (newText) => {
+    edit(newText);
+    setOpen(false);
+  };
   return (
     <Box>
       <Modal sx={{ left: "400px" }} open={open} onClose={() => setOpen(false)}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <InputButton
-            handleSubmit={edit}
+            handleSubmit={handleSubmit}
             defaultValue={defaultValue}
             setOpen={setOpen}
           />
@@ -41,7 +46,16 @@ const ModalPopUp = ({
 
               {subTasks.map((item) => (
                 <Box key={item.id}>
-                  <Box>{item.title}</Box>
+                  <Box>
+                    {item.title}
+                    <Button
+                      onClick={() => {
+                        deleteSubTask(item.id);
+                      }}
+                    >
+                      delete
+                    </Button>
+                  </Box>
                 </Box>
               ))}
             </Box>
