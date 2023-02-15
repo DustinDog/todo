@@ -16,13 +16,11 @@ const useTodo = () => {
   };
 
   const deleteSubTask = (subTaskId) => {
-    const remainedSubtasks = todo[idx].subTasks.filter(
-      (item) => item.id !== subTaskId
-    );
-
     setTodo(
       produce((draft) => {
-        draft[idx].subTasks = remainedSubtasks;
+        draft[idx].subTasks = draft[idx].subTasks.filter(
+          (item) => item.id !== subTaskId
+        );
       })
     );
   };
