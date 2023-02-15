@@ -1,6 +1,7 @@
 import { Box, Button, Modal } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+
 import InputButton from "./InputButton";
+import SubTask from "./SubTask";
 
 const ModalPopUp = ({
   edit,
@@ -24,42 +25,11 @@ const ModalPopUp = ({
             defaultValue={defaultValue}
             setOpen={setOpen}
           />
-          <Box sx={{ display: "flex " }}>
-            <Box>
-              <Box display="flex">
-                <AddIcon
-                  onClick={() => {
-                    addSubTask(45);
-                  }}
-                  fontSize="small"
-                  color="warning"
-                />
-                <Box
-                  onClick={() => {
-                    addSubTask(45);
-                  }}
-                  sx={{ color: "grey", fontSize: "20px" }}
-                >
-                  Add sub-task
-                </Box>
-              </Box>
-
-              {subTasks.map((item) => (
-                <Box key={item.id}>
-                  <Box>
-                    {item.title}
-                    <Button
-                      onClick={() => {
-                        deleteSubTask(item.id);
-                      }}
-                    >
-                      delete
-                    </Button>
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-          </Box>
+          <SubTask
+            subTasks={subTasks}
+            addSubTask={addSubTask}
+            deleteSubTask={deleteSubTask}
+          />
         </Box>
       </Modal>
     </Box>
