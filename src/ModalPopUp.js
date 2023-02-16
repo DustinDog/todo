@@ -19,7 +19,7 @@ const ModalPopUp = ({
   return (
     <Box>
       <Modal sx={{ left: "400px" }} open={open} onClose={() => setOpen(false)}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <InputButton
             handleSubmit={handleSubmit}
             defaultValue={defaultValue}

@@ -1,15 +1,15 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
-import InputSubTask from "./InputSubTask";
 import CircleCheckbox from "./CircleCheckbox";
+import InputButton from "./InputButton";
 
 const SubTask = ({ subTasks, addSubTask, deleteSubTask }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
-    <Box sx={{ display: "flex " }}>
-      <Box>
+    <Box>
+      <Box sx={{ display: "grid", gap: "20px" }}>
         <Box display="flex" sx={{ cursor: "pointer" }}>
           {open ? (
             <Box
@@ -40,7 +40,7 @@ const SubTask = ({ subTasks, addSubTask, deleteSubTask }) => {
                 },
               }}
             >
-              <InputSubTask addSubTask={addSubTask} />
+              <InputButton placeholder="Subtask" handleSubmit={addSubTask} />
               <Button
                 onClick={() => {
                   setOpen(!open);
@@ -52,14 +52,20 @@ const SubTask = ({ subTasks, addSubTask, deleteSubTask }) => {
           )}
         </Box>
         <Box>
-          {subTasks.map((item) => (
-            <Box key={item.id}>
-              <Box>
-                <CircleCheckbox deleteTodo={deleteSubTask} id={item.id} />
-                {item.title}
+          {subTasks.length ? (
+            <Typography>Sub-tasks {subTasks.length}</Typography>
+          ) : null}
+
+          <Box sx={{ pl: "20px" }}>
+            {subTasks.map((item) => (
+              <Box key={item.id}>
+                <Box>
+                  <CircleCheckbox deleteTodo={deleteSubTask} id={item.id} />
+                  {item.title}
+                </Box>
               </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -24,12 +24,8 @@ const useTodo = () => {
       })
     );
   };
+  const editSubTask = () => {};
 
-  const deleteTodo = (id) => {
-    let newTodo = todo.filter((item) => item.id !== id);
-    setTodo(newTodo);
-    setSelectedTodoId("");
-  };
   const addTodo = (value) => {
     setTodo(
       produce((draft) => {
@@ -37,6 +33,12 @@ const useTodo = () => {
       })
     );
   };
+  const deleteTodo = (id) => {
+    let newTodo = todo.filter((item) => item.id !== id);
+    setTodo(newTodo);
+    setSelectedTodoId("");
+  };
+
   const edit = (value) => {
     setTodo(
       produce((draft) => {
