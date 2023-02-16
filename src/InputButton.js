@@ -12,7 +12,7 @@ const InputButton = ({ handleSubmit, placeholder = "", defaultValue = "" }) => {
     <Box>
       <Input
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && newText.length > 0) {
             onSubmit();
           }
         }}
@@ -26,7 +26,12 @@ const InputButton = ({ handleSubmit, placeholder = "", defaultValue = "" }) => {
         placeholder={placeholder}
         sx={{ color: "white", fontSize: "20px" }}
       />
-      <Button variant="contained" onClick={onSubmit}>
+      <Button
+        variant="contained"
+        onClick={() => {
+          if (newText.length > 0) onSubmit();
+        }}
+      >
         <AddIcon />
       </Button>
     </Box>
